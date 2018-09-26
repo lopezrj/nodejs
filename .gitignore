@@ -3,3 +3,4 @@ node_modules
 rdf-files.tar.bz2
 .DS_Store
 *.ldj
+bulk_result.json
