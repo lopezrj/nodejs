@@ -1,3 +1,4 @@
 cache
 node_modules
 rdf-files.tar.bz2
+.DS_Store
