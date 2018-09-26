@@ -110,11 +110,23 @@ program
 
 program
     .command('query [queries...]')
-    .alias['q']
+    .alias('q')
     .description('perform an Elasticsearch query')
     .action((queries = []) => {
-        const options =
+        const options = {
+            url: fullUrl('_search'),
+            json: program.json,
+            qs: {},
+        };
+        if (queries && queries.length) {
+            options.qs.q = queries.join(' ');
+        }
 
+        if (program.filter) {
+            options.qs._source = program.filter;
+        }
+
+        request(options, handleResponse);
     });
 
 program.parse(process.argv);
